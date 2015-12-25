@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.byzk.user.dao.UserDao">
+	<select id="findUser" parameterType="String" resultType="com.byzk.admin.dto.Admin">
+		select * from td_admin where td_name=#{td_name}
+	</select>
+	
+	<insert id="addBook" parameterType="com.byzk.user.dto.Book">
+			insert into td_book(bookname,type,autor,translator,pubname,price,page,bcase,storsge,inTime) 
+			values(#{bookname},#{type},#{autor},#{translator},#{pubname},#{price},#{page},#{bcase},#{storsge},#{inTime})
+	</insert>
+	
+	<select id="findBook" resultType="com.byzk.user.dto.Book">
+		select * from td_book;
+	</select>
+	
+	<insert id="addReader" parameterType="com.byzk.user.dto.Reade">
+		insert into td_reader(name,sex,tel,createdate,borrownum)
+		values(#{name},#{sex},#{tel},#{createdate},#{borrownum})
+	</insert>
+	
+	<select id="findReader" parameterType="String" resultType="com.byzk.user.dto.Reade">
+		select * from td_reader where name = #{name}
+	</select>
+	
+	<select id="findBooks" parameterType="String" resultType="com.byzk.user.dto.Book">
+		select * from td_book where bookname=#{bookname}
+	</select>
+	
+	<update id="updateBookByName" parameterType="String">
+		update td_book set storsge = storsge-1 where bookname=#{bookname}
+	</update>
+	
+	<update id="updateUserById">
+		update td_reader set borrownum = borrownum-1 where id=#{readid}
+	</update>
+	
+	<select id="findAll" resultType="com.byzk.user.dto.Reade">
+		select * from td_reader ; 
+	</select>
+</mapper>

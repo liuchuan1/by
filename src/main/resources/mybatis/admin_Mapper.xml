@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.byzk.admin.dao.AdminDao">
+	<select id="findAdmin" 
+			parameterType="String"
+			resultType="com.byzk.admin.dto.Admin">
+			select * from td_admin where td_name=#{td_name}
+	</select>
+	
+	<insert id="addAdmin"
+			parameterType="com.byzk.admin.dto.Admin">
+			insert into td_admin(td_name,td_pwd) values(#{td_name},#{td_pwd})
+	</insert>
+	
+	<select id="findAllAdmin"
+			resultType="com.byzk.admin.dto.Admin">
+			select * from td_admin
+	</select>
+	
+	<delete id="deleteAdminById"
+			parameterType="int">
+			delete from td_admin where id=#{id}
+	</delete>
+</mapper>

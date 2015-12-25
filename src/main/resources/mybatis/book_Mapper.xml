@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.byzk.book.dao.BorrowAndBackDao">
+
+	<insert id="borrowBook" parameterType="com.byzk.book.dto.BorrowAndBack">
+		insert into td_borrowandback(readid,bookname,borrowtime,ygbacktime,isback) 
+		values(#{readid},#{bookname},#{borrowtime},#{ygbacktime},#{isback})
+	</insert>
+	
+	<select id="findBorrowByName" parameterType="String" resultType="com.byzk.book.dto.BorrowAndBack">
+		select * from td_borrowandback where readid = (select id from td_reader where name=#{name})
+	</select>
+	
+</mapper>
